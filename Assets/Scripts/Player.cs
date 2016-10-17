@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     public float projectileDamage = 10f;
     public float walkForce = 500f;
     public float shootForce = 5000f;
+    public float recoilForce = 500f;
 
     private Rigidbody body;
     private Collider coll;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour {
             p.damage = projectileDamage;
 
             g.GetComponent<Rigidbody>().AddForce(delta.normalized * shootForce);
+            body.AddForce(-delta.normalized * recoilForce);
             Physics.IgnoreCollision(p.coll, coll);
 
         }
